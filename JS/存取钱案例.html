@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let balance = 0
+    let choice = 0
+    while (choice !== 4) {
+      choice = +prompt('请您选择操作：\n' +
+        '                 1.存钱\n' +
+        '                 2.取钱\n' +
+        '                 3.查看余额\n' +
+        '                 4.退出')
+      switch (choice) {
+        case 1:
+          let add = +prompt('请输入存款金额：')
+          if (add > balance) {
+            alert('余额不足！')
+          }
+          else if (add > 0) {
+            balance += add
+            alert(`${add}元已成功存入账户！`)
+          }
+          else {
+            alert('输入金额有误！')
+          }
+          break
+        case 2:
+          let del = +prompt('请输入存款金额：')
+          if (del > 0) {
+            balance -= del
+            alert(`${del}元已成功取出！`)
+          }
+          else {
+            alert('输入金额有误！')
+          }
+          break
+        case 3:
+          alert(`目前账户中共有存款${balance}元`)
+          break
+        case 4:
+          alert('退出成功！')
+          break
+        default:
+          alert('输入错误，请重新输入！')
+      }
+    }
+  </script>
+</body>
+
+</html>
