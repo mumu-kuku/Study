@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getSum(arr = []) {
+      if (arr.length === 0) {
+        return 0
+      }
+      let sum = 0
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i]
+      }
+      return sum
+    }
+
+    let score = []
+    let lession = ['语文', '数学', '英语', '编程']
+    for (let i = 0; i < lession.length; i++) {
+      score.push(+prompt(`请输入${lession[i]}的分数：`))
+    }
+    let sum = getSum(score)
+    document.write(`总分为：${sum}`)
+  </script>
+</body>
+
+</html>
