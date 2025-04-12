@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=`, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function sayHi() {
+      document.write('hi<br>')
+    }
+
+    function mulTable() {
+      for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <= i; j++) {
+          document.write(`<span>${i} * ${j} = ${i * j}</span>`)
+        }
+        document.write('<br>')
+      }
+    }
+
+    sayHi()
+    for (let i = 0; i < 3; i++) {
+      mulTable()
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    let arr = ['岳飞', '韩世忠', '张俊', '张荣', '曲端', '吴玠']
+    while (arr.length > 0) {
+      let ran = Math.random() * arr.length;
+      let choice = arr.splice(ran, 1)
+      console.log(`本轮中奖的是${choice}`)
+    }
+  </script>
+</body>
+
+</html>
