@@ -126,20 +126,23 @@
       { url: './images/slider07.jpg', title: '一站式解决你的电脑配置问题！！！', color: 'rgb(53, 29, 25)' },
       { url: './images/slider08.jpg', title: '谁不想和小猫咪贴贴呢！', color: 'rgb(99, 72, 114)' },
     ]
-    const random = Math.floor(Math.random() * sliderData.length)
-
+    let i = 0
     const img = document.querySelector('.slider-wrapper img')
-    img.src = sliderData[random].url
-
     const ft = document.querySelector('.slider-footer')
-    ft.style.backgroundColor = sliderData[random].color
-
     const ftp = document.querySelector('.slider-footer p')
-    ftp.innerHTML = sliderData[random].title
+    setInterval(function () {
+      i++
+      if (i === sliderData.length) {
+        i = 0
+      }
+      img.src = sliderData[i].url
+      ft.style.backgroundColor = sliderData[i].color
+      ftp.innerHTML = sliderData[i].title
+      document.querySelector('.slider-indicator li.active').classList.remove('active')
+      document.querySelector(`.slider-indicator li:nth-child(${i + 1})`).classList.add('active')
+    }, 1000)
 
-    const lis = document.querySelectorAll('.slider-indicator li')
-    lis[0].classList.remove('active')
-    lis[random].classList.add('active')
+
   </script>
 </body>
 
