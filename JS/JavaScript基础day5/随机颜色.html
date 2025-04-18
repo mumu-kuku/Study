@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,4 +38,45 @@
   </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getColor(c = true) {
+      if (c) {
+        let str = '#'
+        let num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f']
+        for (let i = 0; i < 6; i++) {
+          let n = Math.floor(Math.random() * 16)
+          str += num[n]
+        }
+        return str;
+      }
+      else {
+        let str = 'rgb('
+        for (let i = 0; i < 3; i++) {
+          let n = Math.floor(Math.random() * 256)
+          if (i === 2)
+            str += n + ')'
+          else
+            str += n + ','
+        }
+        return str
+      }
+    }
+
+    document.write(getColor(false))
+    document.write(getColor(true))
+  </script>
+</body>
+
+>>>>>>> 5ce21d764976178a8890ff40255da44f37c6d4f4
 </html>
