@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const date = new Date('2008-08-08 08:08')
+    let hour = date.getHours() >= 10 ? date.getHours() : '0' + date.getHours()
+    let minute = date.getMinutes() >= 10 ? date.getMinutes() : '0' + date.getMinutes()
+    document.write(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${hour}:${minute}`)
+  </script>
+</body>
+
+</html>

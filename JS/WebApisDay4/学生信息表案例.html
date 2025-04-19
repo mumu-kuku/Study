@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学员管理</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .add-student {
+      width: 100%;
+      max-width: 1000px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .add-student h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .add-student form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .add-student label {
+      margin-right: 5px;
+    }
+
+    .add-student input,
+    .add-student select {
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 0 5px;
+    }
+
+    .add-student button {
+      height: 30px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 0 15px;
+      cursor: pointer;
+    }
+
+    .employment-list {
+      width: 100%;
+      max-width: 1000px;
+      padding: 20px;
+    }
+
+    .employment-list h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .employment-list table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .employment-list th,
+    .employment-list td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .employment-list th {
+      background-color: #f0f0f0;
+    }
+
+    .employment-list tr td a {
+      color: #900;
+      text-decoration-line: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 新增学员 -->
+  <div class="add-student">
+    <h2>新增学员</h2>
+    <form>
+      <div>
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name">
+      </div>
+      <div>
+        <label for="age">年龄：</label>
+        <input type="number" id="age" name="age">
+      </div>
+      <div>
+        <label for="gender">性别：</label>
+        <select id="gender" name="gender">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+      <div>
+        <label for="salary">薪资：</label>
+        <input type="number" id="salary" name="salary">
+      </div>
+      <div>
+        <label for="city">就业城市：</label>
+        <select id="city" name="city">
+          <option value="北京">北京</option>
+          <option value="上海">上海</option>
+          <option value="广州">广州</option>
+        </select>
+      </div>
+      <button type="submit">录入</button>
+    </form>
+  </div>
+
+  <!-- 就业榜 -->
+  <div class="employment-list">
+    <h2>就业榜</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>薪资</th>
+          <th>就业城市</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 数据动态填充 -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function render(arr) {
+      tbody.innerHTML = ''
+      for (let i = 0; i < arr.length; i++) {
+        const tr = document.createElement('tr')
+        tr.innerHTML = `
+        <td>${arr[i].stuId}</td>
+        <td>${arr[i].uname}</td>
+        <td>${arr[i].age}</td>
+        <td>${arr[i].gender}</td>
+        <td>${arr[i].salary}</td>
+        <td>${arr[i].city}</td>
+        <td>
+          <a href="javascript:" data-id=${i}>删除</a>
+        </td>
+      `
+        tbody.appendChild(tr)
+      }
+    }
+
+    const submit = document.querySelector('[type="submit"]')
+    const uname = document.querySelector('#name')
+    const age = document.querySelector('#age')
+    const gender = document.querySelector('#gender')
+    const salary = document.querySelector('#salary')
+    const city = document.querySelector('#city')
+    const form = document.querySelector('.add-student form')
+    const tbody = document.querySelector('.employment-list tbody')
+    const input = document.querySelectorAll('[name]')
+    console.log(input)
+    const data = []
+    let uId = 1
+    // console.log(submit)
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+      // console.log(11)
+      for (let i = 0; i < input.length; i++) {
+        if (String(input[i].value).trim() === '') {
+          alert('输入不能为空！')
+          return
+        }
+      }
+      const student = {
+        stuId: uId,
+        uname: uname.value,
+        age: age.value,
+        gender: gender.value,
+        salary: salary.value,
+        city: city.value
+      }
+      uId++
+      data.push(student)
+      form.reset()
+      render(data)
+    })
+
+    tbody.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        data.splice(e.target.dataset.id, 1)
+        render(data)
+      }
+    })
+  </script>
+</body>
+
+</html>

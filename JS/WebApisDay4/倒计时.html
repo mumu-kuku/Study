@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li {
+      list-style: none;
+    }
+
+    .box {
+      height: 370px;
+      width: 290px;
+      background-color: #9d2b2a;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .nowDate {
+      margin: 20px 0;
+      font-size: 20px;
+    }
+
+    .countdown {
+      margin: 25px 0 30px;
+      font-size: 42px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .time {
+      padding: 0;
+      margin-bottom: 100px;
+    }
+
+    .time li {
+      display: inline-block;
+      font-size: 30px;
+    }
+
+    .h,
+    .m,
+    .s {
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      background-color: #2f3939;
+    }
+
+    .classOver {
+      font-size: 28px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <p class="nowDate"></p>
+    <h3 class="countdown">下班倒计时</h3>
+    <ul class="time">
+      <li class="h">00</li>
+      <li>:</li>
+      <li class="m">00</li>
+      <li>:</li>
+      <li class="s">00</li>
+    </ul>
+    <p class="classOver"></p>
+  </div>
+
+  <script>
+    function getTime() {
+      date = new Date()
+      const diff = overDate - date;
+      const h = Math.floor(diff / 3600000)
+      const m = Math.floor(diff % 3600000 / 60000)
+      const s = Math.floor(diff % 60000 / 1000)
+      document.querySelector('.h').innerHTML = h >= 10 ? h : '0' + h
+      document.querySelector('.m').innerHTML = m >= 10 ? m : '0' + m
+      document.querySelector('.s').innerHTML = s >= 10 ? s : '0' + s
+    }
+
+    const nowDate = document.querySelector('.nowDate')
+    let date = new Date()
+    const overDate = new Date(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 18:30:00`)
+    const overClass = document.querySelector('.classOver')
+    // console.log(overDate)
+    nowDate.innerHTML = `今天是${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+    getTime()
+    setInterval(getTime, 1000)
+
+    const oh = overDate.getHours() >= 10 ? overDate.getHours() : '0' + overDate.getHours()
+    const om = overDate.getMinutes() >= 10 ? overDate.getMinutes() : '0' + overDate.getHours()
+    const os = overDate.getSeconds() >= 10 ? overDate.getSeconds() : '0' + overDate.getSeconds()
+    overClass.innerHTML = `${oh}:${om}:${os}下课`
+  </script>
+</body>
+
+</html>

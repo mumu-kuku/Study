@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      margin: auto;
+      text-align: center;
+      background-color: pink;
+    }
+
+    div p {
+      width: 100%;
+      height: 100%;
+      line-height: 100px;
+    }
+
+    div span {
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      background-color: skyblue;
+    }
+
+    div:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>我是广告</p>
+    <span>X</span>
+  </div>
+  <script>
+    // const div = document.querySelector('div')
+    const x = document.querySelector('div span')
+    x.addEventListener('click', function () {
+      x.parentNode.style.display = 'none'
+    })
+  </script>
+</body>
+
+</html>
