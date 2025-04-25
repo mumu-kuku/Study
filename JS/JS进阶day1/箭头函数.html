@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 普通匿名函数
+    // const fun = function (x) {
+    //   return x + x
+    // }
+    // console.log(fun(5))
+    // 1.箭头函数
+    // const fun = (x) => {
+    //   return x + x
+    // }
+    // console.log(fun(5))
+    // 2.只有一个参数时可以省略小括号
+    // const fun = x => {
+    //   return x + x
+    // }
+    // console.log(fun(4))
+    // 3.只有一行时可以省略大括号
+    // const fun = x => console.log(x + x)
+    // fun(3)
+    // 4.只有一行时可以省略return
+    // const fun = x => x + x
+    // console.log(fun(2))
+    // 5.箭头函数可以直接返回一个对象
+    const fun = uname => ({ uname: uname })
+    let cxk = fun('蔡徐坤')
+    console.log(cxk)
+  </script>
+</body>
+
+</html>

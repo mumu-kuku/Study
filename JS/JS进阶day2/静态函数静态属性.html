@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, gender) {
+      // 这些是实例成员
+      this.name = name
+      this.gender = gender
+      this.SayHello = function () {
+        console.log('Hello')
+        console.log(this)
+      }
+    }
+    // 这些是静态成员
+    Person.SayHi = function () {
+      console.log('Hi')
+      console.log(this)
+    }
+    Person.eyes = 2
+    // 实例化和调用
+    const cxk = new Person('cxk', '男')
+    console.log(cxk)
+    console.log(Person.eyes)
+    Person.SayHi()
+    cxk.SayHello()
+  </script>
+</body>
+
+</html>
