@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name) {
+      this.name = name
+    }
+    const ldh = new Person('刘德华')
+
+    if (Person.prototype === ldh.__proto__) {
+      console.log('实例对象的__proto__和构造函数的prototype相同,均是原型对象')
+      console.dir(Person.prototype)
+      console.dir(ldh.__proto__)
+    }
+
+    if (Person.prototype.constructor === ldh.constructor) {
+      console.log('实例对象的constructor和原型对象的prototype相同,均是构造函数')
+      console.dir(Person.constructor)
+      console.dir(ldh.constructor)
+    }
+
+
+  </script>
+</body>
+
+</html>
