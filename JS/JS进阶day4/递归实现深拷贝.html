@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Father(name, age, son) {
+      this.name = name
+      this.age = age
+      this.son = son
+    }
+
+    function Son(name, age) {
+      this.name = name
+      this.age = age
+    }
+
+    function deepClone(oldObject, newObject) {
+      for (const k in oldObject) {
+        if (oldObject[k] instanceof Array) {
+          newObject[k] = []
+          deepClone(oldObject[k], newObject[k])
+        } else if (oldObject[k] instanceof Object) {
+          newObject[k] = {}
+          deepClone(oldObject[k], newObject[k])
+        } else {
+          newObject[k] = oldObject[k]
+        }
+      }
+    }
+
+    const xw = new Son('小王', 10)
+    const lw = new Father('老王', 35, xw)
+    const xlw = new Father()
+
+    deepClone(lw, xlw)
+    console.log(lw)
+    console.log(xlw);
+    console.log(lw.son === xlw.son)
+  </script>
+</body>
+
+</html>

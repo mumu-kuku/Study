@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: #ccc;
+      color: #fff;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="lodash.min.js"></script>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 0
+    function mouseMove() {
+      box.innerHTML = ++i
+    }
+    // lodash 节流
+    // box.addEventListener('mousemove', _.throttle(mouseMove, 500))
+    // lodash 防抖
+    // box.addEventListener('mousemove', _.debounce(mouseMove, 500))
+    function throttle(fn, t) {
+      let starTime = 0
+      return function () {
+        const now = Date.now()
+        if (now - starTime >= t) {
+          fn()
+          starTime = now
+        }
+      }
+    }
+
+    function debounce(fn, t) {
+      let timeId
+      return function () {
+        if (timeId) clearTimeout(timeId)
+        timeId = setTimeout(function () {
+          fn()
+        }, t)
+      }
+    }
+    // 手写节流函数
+    // box.addEventListener('mousemove', throttle(mouseMove, 500))
+    // 手写防抖函数
+    box.addEventListener('mousemove', debounce(mouseMove, 500))
+  </script>
+</body>
+
+</html>
