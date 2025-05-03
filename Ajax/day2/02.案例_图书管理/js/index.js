@@ -93,3 +93,42 @@ document.querySelector('.list').addEventListener('click', e => {
     })
   }
 })
+
+/**
+ * 编辑图书功能
+ */
+const editDom = document.querySelector('.edit-modal')
+const edit = new bootstrap.Modal(editDom)
+document.querySelector('.list').addEventListener('click', e => {
+  if (e.target.classList.contains('edit')) {
+    const theId = e.target.parentNode.dataset.id
+    axios({
+      url: `https://hmajax.itheima.net/api/books/${theId}`,
+    }).then(res => {
+      const bookData = res.data.data
+      const bookKeys = Object.keys(bookData)
+      // console.log(bookKeys)
+      bookKeys.forEach(k => {
+        document.querySelector(`.edit-form .${k}`).value = bookData[k]
+      })
+    }).then(res => {
+      edit.show()
+    })
+  }
+})
+
+document.querySelector('.edit-btn').addEventListener('click', () => {
+  const editform = document.querySelector('.edit-form')
+  const editData = serialize(editform, { hash: true, empty: true })
+  axios({
+    url: `https://hmajax.itheima.net/api/books/${editData.id}`,
+    method: 'PUT',
+    data: {
+      ...editData,
+      creator
+    }
+  }).then(res => {
+    edit.hide()
+    getBookList()
+  })
+})
