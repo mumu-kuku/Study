@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async函数和await_解决回调函数地狱</title>
+</head>
+
+<body>
+  <form>
+    <span>省份：</span>
+    <select>
+      <option class="province"></option>
+    </select>
+    <span>城市：</span>
+    <select>
+      <option class="city"></option>
+    </select>
+    <span>地区：</span>
+    <select>
+      <option class="area"></option>
+    </select>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    async function test() {
+      try {
+        const pObj = await axios({ url: 'https://hmajax.itheima.net/api/province' })
+        // console.log(pObj)
+        const pname = pObj.data.list[0]
+        const cObj = await axios({ url: 'https://hmajax.itheima.net/api/city', params: { pname } })
+        const cname = cObj.data.list[0]
+        const aObj = await axios({ url: 'https://hmajax.itheima.net/api/area', params: { pname, cname } })
+
+        document.querySelector('.province').innerHTML = pname
+        document.querySelector('.city').innerHTML = cname
+        document.querySelector('.area').innerHTML = aObj.data.list[0]
+      } catch (error) {
+        console.dir(error)
+      }
+    }
+    test()
+  </script>
+</body>
+
+</html>
